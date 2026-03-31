@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects – Tebogo Matseding</title>
+<meta name="description" content="Portfolio of projects by Tebogo Matseding – cloud, security, networking, and infrastructure.">
+<link rel="icon" href="../images/show1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Press+Start+2P&family=Oswald:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+  --black:#000;
+  --green:#00cd00;
+  --green-dim:#007a00;
+  --green-bright:#00ff41;
+  --white:#fff;
+  --panel:#0a0a0a;
+  --panel-2:#111;
+  --text-soft:rgba(255,255,255,0.72);
+  --text-dim:rgba(255,255,255,0.50);
+  --border:rgba(0,205,0,0.15);
+  --pixel:'Press Start 2P', monospace;
+  --mono:'Share Tech Mono', monospace;
+  --head:'Oswald', sans-serif;
+  --body:'Raleway', sans-serif;
+  --nav-h:95px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--black);
+  color:var(--white);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button,input{font:inherit}
+button{cursor:pointer}
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline:2px solid var(--green-bright);
+  outline-offset:3px;
+}
+
+/* ── CUSTOM CURSOR DESKTOP ONLY ── */
+@media (pointer:fine) {
+  *, *::before, *::after { cursor:none !important; }
+  #cursorSvg{
+    position:fixed;
+    top:0; left:0;
+    width:22px; height:26px;
+    pointer-events:none;
+    z-index:99999;
+  }
+}
+
+/* ── NAV ── */
+header{
+  background:var(--black);
+  border-bottom:2px solid var(--green-dim);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:var(--nav-h);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 40px;
+  height:100%;
+}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:80px;height:80px;image-rendering:pixelated}
+.nav-logo span{
+  font-family:var(--pixel);
+  font-size:1.1rem;
+  color:var(--green);
+  letter-spacing:3px;
+  line-height:1.6;
+  white-space:nowrap;
+}
+nav ul{display:flex;gap:8px}
+nav ul a{
+  font-family:var(--mono);
+  font-size:0.88rem;
+  color:var(--green);
+  padding:6px 16px;
+  border:1px solid transparent;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:color .15s,border-color .15s,background .15s;
+}
+nav ul a:hover,
+nav ul a.active{
+  color:var(--white);
+  border-color:var(--green-dim);
+  background:rgba(0,205,0,0.05);
+}
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  border:none;
+  padding:6px;
+}
+.hamburger span{
+  display:block;
+  width:22px;
+  height:2px;
+  background:var(--green);
+}
+.mobile-menu{
+  display:none;
+  background:var(--black);
+  border-bottom:2px solid var(--green-dim);
+  padding:12px 24px 20px;
+}
+.mobile-menu.open{display:block}
+.mobile-menu a{
+  display:block;
+  font-family:var(--mono);
+  color:var(--green);
+  padding:10px 0;
+  border-bottom:1px solid var(--green-dim);
+  font-size:.9rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.mobile-menu a:hover{color:var(--white)}
+
+/* ── PAGE HEADER ── */
+.page-header{
+  background:linear-gradient(180deg,#000 0%,#001400 60%,#000 100%);
+  border-bottom:2px solid var(--green-dim);
+  padding:60px 24px 48px;
+  position:relative;
+  overflow:hidden;
+}
+.page-header::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.07) 2px,
+    rgba(0,0,0,0.07) 4px
+  );
+  pointer-events:none;
+}
+.page-header .container{position:relative;z-index:1}
+.page-header h1{
+  font-family:var(--pixel);
+  font-size:1rem;
+  color:var(--green);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+  text-shadow:0 0 20px rgba(0,205,0,0.35);
+}
+.page-header p{
+  font-family:var(--mono);
+  font-size:.82rem;
+  color:#8bbf8b;
+  letter-spacing:1px;
+  max-width:760px;
+}
+
+/* ── SHARED ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:64px 0}
+.section-title{
+  font-family:var(--pixel);
+  font-size:.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:32px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:var(--green);
+}
+.section-title::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,var(--green-dim),transparent);
+}
+.pixel-accent{
+  display:inline-block;
+  width:8px;height:8px;
+  background:var(--green);
+  flex-shrink:0;
+  animation:blink 2s infinite;
+}
+@keyframes blink{50%{opacity:0}}
+.fade-in{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.fade-in.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+
+/* ── CARDS ── */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.card{
+  background:var(--panel);
+  border:1px solid var(--green-dim);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+.card::after{
+  content:'';
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:2px;
+  background:var(--green);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .25s ease;
+}
+.card:hover{
+  border-color:var(--green);
+  box-shadow:0 0 18px rgba(0,205,0,0.10);
+  transform:translateY(-2px);
+}
+.card:hover::after{transform:scaleX(1)}
+.card.hidden{display:none}
+
+.card-img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-bottom:1px solid var(--green-dim);
+  filter:brightness(.85) saturate(.85);
+  transition:filter .2s;
+  background:#111;
+}
+.card:hover .card-img{filter:brightness(1) saturate(1)}
+.card-img-contain{
+  object-fit:contain !important;
+  padding:18px;
+  background:var(--panel-2);
+}
+.card-body{
+  padding:16px 18px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.card-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:10px;
+}
+.meta-pill{
+  font-family:var(--pixel);
+  font-size:.32rem;
+  color:var(--green-dim);
+  border:1px solid var(--green-dim);
+  padding:3px 7px;
+  letter-spacing:1px;
+}
+.meta-pill.readtime{
+  color:#a5c9a5;
+  border-color:#2a442a;
+}
+.card-title{
+  font-family:var(--mono);
+  font-size:.84rem;
+  line-height:1.5;
+  margin-bottom:10px;
+  color:var(--white);
+}
+.card-title a{transition:color .15s}
+.card-title a:hover{color:var(--green)}
+.card-excerpt{
+  font-size:.84rem;
+  color:var(--text-dim);
+  line-height:1.7;
+  flex:1;
+  margin-bottom:16px;
+}
+.card-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-top:1px solid rgba(0,205,0,0.10);
+  padding-top:12px;
+  margin-top:auto;
+}
+.btn-read{
+  font-family:var(--pixel);
+  font-size:.40rem;
+  color:var(--green);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:color .15s;
+}
+.btn-read:hover{color:var(--green-bright)}
+.article-type{
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:#8bbf8b;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state{
+  display:none;
+  margin-top:20px;
+  padding:26px;
+  border:1px dashed var(--green-dim);
+  background:rgba(0,205,0,0.03);
+}
+.empty-state.show{display:block}
+.empty-state h3{
+  font-family:var(--pixel);
+  font-size:.55rem;
+  color:var(--green);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+  line-height:1.8;
+}
+.empty-state p{
+  font-family:var(--mono);
+  color:#b9ddb9;
+  font-size:.95rem;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:#000;
+  border-top:2px solid var(--green-dim);
+  color:rgba(255,255,255,0.45);
+  text-align:center;
+  padding:30px 24px;
+  font-family:var(--mono);
+  font-size:.78rem;
+  line-height:1.9;
+}
+footer span{color:var(--green-dim)}
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px){
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:650px){
+  nav ul{display:none}
+  .hamburger{display:flex}
+  .cards-grid{grid-template-columns:1fr}
+  .nav-logo span{display:none}
+  .page-header h1{font-size:.7rem}
+  .toolbar-inner{align-items:stretch}
+  .search-wrap{max-width:none}
+}
+</style>
+</head>
+<body>
+
+<svg id="cursorSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22" aria-hidden="true">
+  <path d="M1,1 L1,18 L5,14 L8,21 L10,20 L7,13 L13,13 Z" fill="white" stroke="white" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M1,1 L1,18 L5,14 L8,21 L10,20 L7,13 L13,13 Z" fill="black"/>
+</svg>
+
+<header>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="Go to homepage">
+      <img src="../images/show1.png" alt="Tebogo Matseding logo">
+      <span>Tebogo Matseding</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#education">Education</a></li>
+        <li><a href="../index.html#certifications">Certifications</a></li>
+        <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#certifications">Certifications</a>
+    <a href="projects.html" aria-current="page">Projects</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <h1>// Projects</h1>
+    <p>Showcase of cloud infrastructure, security implementations, networking solutions, and IT automation projects.</p>
+  </div>
+</div>
+
+
+
+<!-- ══ SCHOOL PROJECTS ══ -->
+<section class="section" id="school">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>School Projects</h2>
+    <div class="cards-grid post-grid">
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Tux.svg.png" alt="Automated Log Management Script">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#linux</span><span class="meta-pill">#scripting</span></div>
+          <div class="card-title"><a href="Automated Log Management Script.html">Automated Log Management Script</a></div>
+          <p class="card-excerpt">Shell script that archives .log files older than 7 days, automating routine log cleanup tasks on Linux systems.</p>
+          <div class="card-footer"><a class="btn-read" href="Automated Log Management Script.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Microsoft_Azure.svg.png" alt="Azure Virtual Machines Deployment">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#azure</span><span class="meta-pill">#cloud</span></div>
+          <div class="card-title"><a href="Azure Virtual Machines Deployment.html">Azure Virtual Machines Deployment</a></div>
+          <p class="card-excerpt">Deployed Ubuntu Server 24.04 and Windows 10 VMs on Azure, learning cloud provisioning and resource management.</p>
+          <div class="card-footer"><a class="btn-read" href="Azure Virtual Machines Deployment.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Amazon_Web_Services-Logo.wine.png" alt="Beginners Guide to AWS Pricing Calculator">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#aws</span><span class="meta-pill">#cloud</span></div>
+          <div class="card-title"><a href="Beginners Guide to AWS Pricing Calculator.html">Beginners Guide to AWS Pricing Calculator</a></div>
+          <p class="card-excerpt">Explored the AWS Pricing Calculator by adding EC2 instances, storage, and comparing pricing models for cost estimation.</p>
+          <div class="card-footer"><a class="btn-read" href="Beginners Guide to AWS Pricing Calculator.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Hyper-V_logo.png" alt="Configuring a Private Virtual Network in Hyper-V">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#hyper-v</span><span class="meta-pill">#networking</span></div>
+          <div class="card-title"><a href="Configuring a Private Virtual Network in Hyper-V.html">Configuring a Private Virtual Network in Hyper-V</a></div>
+          <p class="card-excerpt">Created an isolated private network between two Hyper-V VMs, enabling inter-VM communication without host access.</p>
+          <div class="card-footer"><a class="btn-read" href="Configuring a Private Virtual Network in Hyper-V.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Amazon_Web_Services-Logo.wine.png" alt="EC2 Setup & SSH Access Guide">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#aws</span><span class="meta-pill">#cloud</span></div>
+          <div class="card-title"><a href="EC2 Setup & SSH Access Guide.html">EC2 Setup &amp; SSH Access Guide</a></div>
+          <p class="card-excerpt">Configured a custom AWS VPC, launched an EC2 instance, and established SSH access with a public IP and security groups.</p>
+          <div class="card-footer"><a class="btn-read" href="EC2 Setup & SSH Access Guide.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/VirtualBox_2024_Logo.svg.png" alt="Implementation and Simulation of a Virtualised Environment">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#virtualbox</span><span class="meta-pill">#windows-server</span></div>
+          <div class="card-title"><a href="Implementation and Simulation of a Virtualised Environment.html">Implementation &amp; Simulation of a Virtualised Environment</a></div>
+          <p class="card-excerpt">Built a Windows Server environment in VirtualBox with Active Directory, DNS, SQL Server, and IIS to simulate a real office setup.</p>
+          <div class="card-footer"><a class="btn-read" href="Implementation and Simulation of a Virtualised Environment.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Tux.svg.png" alt="Linux Virtual Machines and File Management Using VirtualBox">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#linux</span><span class="meta-pill">#virtualbox</span></div>
+          <div class="card-title"><a href="Linux Virtual Machines and File Management Using VirtualBox.html">Linux VMs &amp; File Management Using VirtualBox</a></div>
+          <p class="card-excerpt">Created and managed two Linux VMs in VirtualBox, performing file and directory operations entirely through the terminal.</p>
+          <div class="card-footer"><a class="btn-read" href="Linux Virtual Machines and File Management Using VirtualBox.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Kali-dragon-icon.svg.png" alt="Penetration Testing Lab Kali Metasploitable">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#security</span><span class="meta-pill">#kali</span></div>
+          <div class="card-title"><a href="Penetration Testing Lab Kali Metasploitable.html">Penetration Testing Lab: Kali &amp; Metasploitable</a></div>
+          <p class="card-excerpt">Set up a virtual lab with Kali Linux and Metasploitable 2, performing network scanning and exploitation techniques.</p>
+          <div class="card-footer"><a class="btn-read" href="Penetration Testing Lab Kali Metasploitable.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Microsoft_Azure.svg.png" alt="Storage Configuration Project">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#azure</span><span class="meta-pill">#storage</span></div>
+          <div class="card-title"><a href="Storage Configuration Project.html">Storage Configuration Project</a></div>
+          <p class="card-excerpt">Configured Azure Blob Storage for an organisation, creating resource groups, storage accounts, and access controls.</p>
+          <div class="card-footer"><a class="btn-read" href="Storage Configuration Project.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/comptia-network-0_1_orig.png" alt="Virtual Network Configuration With Subnetting">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#networking</span><span class="meta-pill">#subnetting</span></div>
+          <div class="card-title"><a href="Virtual Network Configuration With Subnetting.html">Virtual Network Configuration With Subnetting</a></div>
+          <p class="card-excerpt">Calculated subnet ranges and assigned static IPs across a small VirtualBox virtual network environment.</p>
+          <div class="card-footer"><a class="btn-read" href="Virtual Network Configuration With Subnetting.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Picture1.jpg" alt="Virtual Office Infrastructure">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#hyper-v</span><span class="meta-pill">#infrastructure</span></div>
+          <div class="card-title"><a href="Virtual Office Infrastructure with Remote Server and Printer Management.html">Virtual Office Infrastructure</a></div>
+          <p class="card-excerpt">Simulated a real-world IT office in Hyper-V with remote server and network printer management.</p>
+          <div class="card-footer"><a class="btn-read" href="Virtual Office Infrastructure with Remote Server and Printer Management.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Hyper-V_logo.png" alt="Virtual Machine Deployment Using Hyper-V">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#hyper-v</span><span class="meta-pill">#virtualisation</span></div>
+          <div class="card-title"><a href="Virtual Machine Deployment Using Hyper-V.html">Virtual Machine Deployment Using Hyper-V</a></div>
+          <p class="card-excerpt">Set up Windows 10 and Windows Server 2016 VMs in Hyper-V, configuring resources, networking, and snapshots.</p>
+          <div class="card-footer"><a class="btn-read" href="Virtual Machine Deployment Using Hyper-V.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Windows_logo_-_2012.svg.png" alt="Virtualization And GPO Deployment">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#active-directory</span><span class="meta-pill">#gpo</span></div>
+          <div class="card-title"><a href="Virtualization And GPO Deployment.html">Virtualization &amp; GPO Deployment</a></div>
+          <p class="card-excerpt">Deployed a Windows Server domain with Active Directory, DNS, and Group Policy Objects for centralised policy management.</p>
+          <div class="card-footer"><a class="btn-read" href="Virtualization And GPO Deployment.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/photo-1506399558188-acca6f8cbf41.jpeg" alt="Virtualization Challenges in the IT World">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#virtualisation</span><span class="meta-pill">#research</span></div>
+          <div class="card-title"><a href="Virtualization Challenges in the IT World.html">Virtualization Challenges in the IT World</a></div>
+          <p class="card-excerpt">Analysed virtualization challenges and compared VMware, Hyper-V, and VirtualBox on performance, security, and scalability.</p>
+          <div class="card-footer"><a class="btn-read" href="Virtualization Challenges in the IT World.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Picture2.png" alt="Vulnerability Assessment For Eduvos Web App">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#security</span><span class="meta-pill">#assessment</span></div>
+          <div class="card-title"><a href="Vulnerability Assessment For Eduvos Web App.html">Vulnerability Assessment: Eduvos Web App</a></div>
+          <p class="card-excerpt">Conducted a simulated web app vulnerability assessment using Nmap, Burp Suite, OWASP ZAP, and OpenVAS with POPIA compliance focus.</p>
+          <div class="card-footer"><a class="btn-read" href="Vulnerability Assessment For Eduvos Web App.html">View Project &#8594;</a><span class="article-type">School</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PERSONAL PROJECTS ══ -->
+<section class="section" id="personal" style="border-top:1px solid rgba(0,205,0,0.12)">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>Personal Projects</h2>
+    <div class="cards-grid post-grid">
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/PowerShell_5.0_icon.png" alt="Automated AD User Creation Using Powershell And CSV">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#powershell</span><span class="meta-pill">#active-directory</span></div>
+          <div class="card-title"><a href="Automated AD User Creation Using Powershell And CSV.html">Automated AD User Creation via PowerShell &amp; CSV</a></div>
+          <p class="card-excerpt">Automated IT onboarding by bulk-creating Active Directory users from a CSV file using a PowerShell script.</p>
+          <div class="card-footer"><a class="btn-read" href="Automated AD User Creation Using Powershell And CSV.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/photo-1721830834983-f111ad63dbf4.jpeg" alt="Clearing Stuck Print Jobs In The Queue">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#helpdesk</span><span class="meta-pill">#windows</span></div>
+          <div class="card-title"><a href="Clearing Stuck Print Jobs In The Queue.html">Clearing Stuck Print Jobs In The Queue</a></div>
+          <p class="card-excerpt">Resolved stuck print queue issues through service restarts and manual queue management — a common Tier 1 helpdesk scenario.</p>
+          <div class="card-footer"><a class="btn-read" href="Clearing Stuck Print Jobs In The Queue.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/PowerShell_5.0_icon.png" alt="Domain Setup & Policy Enforcement with Powershell">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#powershell</span><span class="meta-pill">#gpo</span></div>
+          <div class="card-title"><a href="Domain Setup & Policy Enforcement with Powershell.html">Domain Setup &amp; Policy Enforcement with PowerShell</a></div>
+          <p class="card-excerpt">Configured GPOs and drive mapping via PowerShell to enforce domain-wide security and department-level policies.</p>
+          <div class="card-footer"><a class="btn-read" href="Domain Setup & Policy Enforcement with Powershell.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Tux.svg.png" alt="Hardened MySQL Deployment">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#mysql</span><span class="meta-pill">#security</span></div>
+          <div class="card-title"><a href="Hardened MySQL Deployment.html">Hardened MySQL Deployment</a></div>
+          <p class="card-excerpt">Locked down a MySQL environment inside a private virtual network with strict firewall rules and a dedicated remote admin server.</p>
+          <div class="card-footer"><a class="btn-read" href="Hardened MySQL Deployment.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Tux.svg.png" alt="Initializing a New Hard Disk on Linux">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#linux</span><span class="meta-pill">#storage</span></div>
+          <div class="card-title"><a href="Initializing a New Hard Disk on Linux.html">Initializing a New Hard Disk on Linux</a></div>
+          <p class="card-excerpt">Identified, partitioned, formatted, and mounted a new HDD on Linux for file storage using fdisk and mkfs.</p>
+          <div class="card-footer"><a class="btn-read" href="Initializing a New Hard Disk on Linux.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Microsoft_Azure.svg.png" alt="Monitoring and Alerting on Azure VM Performance">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#azure</span><span class="meta-pill">#monitoring</span></div>
+          <div class="card-title"><a href="Monitoring and Alerting on Azure VM Performance.html">Monitoring &amp; Alerting on Azure VM Performance</a></div>
+          <p class="card-excerpt">Implemented a full Azure Monitor and alerting solution to detect and respond to VM performance anomalies in real time.</p>
+          <div class="card-footer"><a class="btn-read" href="Monitoring and Alerting on Azure VM Performance.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Windows-10-network-drive-icon.png" alt="Remapping a Network Drive After a Password Change">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#helpdesk</span><span class="meta-pill">#networking</span></div>
+          <div class="card-title"><a href="Remapping a Network Drive After a Password Change.html">Remapping a Network Drive After a Password Change</a></div>
+          <p class="card-excerpt">Resolved disconnected network drives caused by password changes using GPO and manual remapping techniques.</p>
+          <div class="card-footer"><a class="btn-read" href="Remapping a Network Drive After a Password Change.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/incorrect password.png" alt="Resetting a Forgotten User Password in Active Directory">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#active-directory</span><span class="meta-pill">#helpdesk</span></div>
+          <div class="card-title"><a href="Resetting a Forgotten User Password in Active Directory.html">Resetting a Forgotten AD User Password</a></div>
+          <p class="card-excerpt">Walked through AD password reset with account unlock steps and IT support best practices for smooth user recovery.</p>
+          <div class="card-footer"><a class="btn-read" href="Resetting a Forgotten User Password in Active Directory.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Tux.svg.png" alt="Secure Headless Database Infrastructure Using VirtualBox">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#mysql</span><span class="meta-pill">#security</span></div>
+          <div class="card-title"><a href="Secure Headless Database Infrastructure Using VirtualBox.html">Secure Headless Database Infrastructure</a></div>
+          <p class="card-excerpt">Set up a headless MySQL server in VirtualBox accessible only via SSH from a remote admin VM — no direct local access.</p>
+          <div class="card-footer"><a class="btn-read" href="Secure Headless Database Infrastructure Using VirtualBox.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Microsoft_Azure.svg.png" alt="Secure VM with Azurite Blob Storage Backup">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#azure</span><span class="meta-pill">#linux</span></div>
+          <div class="card-title"><a href="Secure VM with Azurite Blob Storage Backup.html">Secure VM with Azurite Blob Storage Backup</a></div>
+          <p class="card-excerpt">Hardened a Linux VM with Fail2Ban and automated backup scripts pushing data to an Azurite blob storage emulator.</p>
+          <div class="card-footer"><a class="btn-read" href="Secure VM with Azurite Blob Storage Backup.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/CVSS_4.0-complete-signature-RGB.svg.png" alt="Standard Operating Procedure Vulnerability Assessment">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#security</span><span class="meta-pill">#sop</span></div>
+          <div class="card-title"><a href="Standard Operating Procedure (SOP)Vulnerability Assessment.html">SOP: Vulnerability Assessment</a></div>
+          <p class="card-excerpt">Created a structured SOP covering the full vulnerability assessment lifecycle — identification, analysis, and remediation.</p>
+          <div class="card-footer"><a class="btn-read" href="Standard Operating Procedure (SOP)Vulnerability Assessment.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Amazon_Web_Services-Logo.wine.png" alt="Static Portfolio Website with SSL Certs">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#aws</span><span class="meta-pill">#web</span></div>
+          <div class="card-title"><a href="Static Portfolio Website with SSL Certs.html">Static Portfolio Website with SSL Certs</a></div>
+          <p class="card-excerpt">Hosted a secure static site on AWS S3 with Route 53, CloudFront CDN, and an ACM SSL/TLS certificate.</p>
+          <div class="card-footer"><a class="btn-read" href="Static Portfolio Website with SSL Certs.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Microsoft_OneDrive_Icon_(2025_-_present).svg.png" alt="Troubleshooting Guide for OneDrive">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#helpdesk</span><span class="meta-pill">#microsoft365</span></div>
+          <div class="card-title"><a href="Troubleshooting Guide for OneDrive.html">Troubleshooting Guide for OneDrive</a></div>
+          <p class="card-excerpt">Step-by-step Tier 1 guide for common OneDrive sync, access, and Microsoft 365 integration issues.</p>
+          <div class="card-footer"><a class="btn-read" href="Troubleshooting Guide for OneDrive.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/al-amin-mir-sUY_XCkKBzg-unsplash (2).jpg" alt="Troubleshooting Guide for Printers">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#helpdesk</span><span class="meta-pill">#printers</span></div>
+          <div class="card-title"><a href="Troubleshooting Guide for Printers.html">Troubleshooting Guide for Printers</a></div>
+          <p class="card-excerpt">Comprehensive Tier 1 printer guide covering connections, drivers, print queues, and network printer issues.</p>
+          <div class="card-footer"><a class="btn-read" href="Troubleshooting Guide for Printers.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+      <article class="card fade-in">
+        <img class="card-img card-img-contain" src="../images/Picture12.jpg" alt="Wi-Fi Troubleshooting Basics">
+        <div class="card-body">
+          <div class="card-meta"><span class="meta-pill">#helpdesk</span><span class="meta-pill">#networking</span></div>
+          <div class="card-title"><a href="Wi-Fi Troubleshooting Basics.html">Wi-Fi Troubleshooting Basics</a></div>
+          <p class="card-excerpt">Structured Tier 1 guide for diagnosing Wi-Fi issues — from checking physical connections to escalating ISP-level problems.</p>
+          <div class="card-footer"><a class="btn-read" href="Wi-Fi Troubleshooting Basics.html">View Project &#8594;</a><span class="article-type">Personal</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&#169; 2025 Tebogo Matseding<br>
+  <span>Passionate about cloud, security, and infrastructure that works.</span></p>
+</footer>
+
+<script>
+/* ── Cursor ── */
+(function () {
+  var cur = document.getElementById('cursorSvg');
+  if (!cur || !window.matchMedia('(pointer:fine)').matches) return;
+
+  document.addEventListener('mousemove', function(e) {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top  = e.clientY + 'px';
+  });
+})();
+
+/* ── Mobile nav ── */
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobileMenu');
+
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', function () {
+    var isOpen = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+/* ── Scroll fade-in ── */
+if ('IntersectionObserver' in window) {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+} else {
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+// Search and filter will be re-added once all projects are published
+</script>
+</body>
+</html>

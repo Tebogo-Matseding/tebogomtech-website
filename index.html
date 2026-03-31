@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tebogo Matseding – IT Portfolio</title>
+<meta name="description" content="Aspiring Cloud Architect & Network Engineer. IT portfolio of Tebogo Matseding.">
+<link rel="icon" href="images/show1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Press+Start+2P&family=Oswald:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;cursor:none!important}
+#cursorSvg{position:fixed;top:0;left:0;width:22px;height:26px;pointer-events:none;z-index:99999}
+:root{
+  --black:#000;--green:#00cd00;--green-dim:#007a00;--green-bright:#00ff41;--white:#fff;
+  --pixel:'Press Start 2P',monospace;--mono:'Share Tech Mono',monospace;
+  --head:'Oswald',sans-serif;--body:'Raleway',sans-serif;--nav-h:95px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--black);color:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+/* NAV */
+header{background:var(--black);border-bottom:2px solid var(--green-dim);position:sticky;top:0;z-index:1000;height:var(--nav-h)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto;padding:0 40px;height:100%}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:80px;height:80px;image-rendering:pixelated}
+.nav-logo span{font-family:var(--pixel);font-size:1.1rem;color:var(--green);letter-spacing:3px;line-height:1.6;white-space:nowrap}
+nav ul{display:flex;gap:8px}
+nav ul a{font-family:var(--mono);font-size:0.88rem;color:var(--green);padding:6px 16px;border:1px solid transparent;letter-spacing:1px;text-transform:uppercase;transition:color 0.15s,border-color 0.15s}
+nav ul a:hover,nav ul a.active{color:var(--white);border-color:var(--green-dim)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--green)}
+.mobile-menu{display:none;background:var(--black);border-bottom:2px solid var(--green-dim);padding:12px 24px 20px}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;font-family:var(--mono);color:var(--green);padding:10px 0;border-bottom:1px solid var(--green-dim);font-size:0.9rem;letter-spacing:1px;text-transform:uppercase}
+.mobile-menu a:hover{color:var(--white)}
+/* HERO */
+.hero{min-height:calc(100vh - var(--nav-h));background:linear-gradient(180deg,#000 0%,#001400 50%,#000 100%);display:flex;align-items:center;justify-content:center;padding:40px 24px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px);pointer-events:none}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:860px}
+/* TERMINAL */
+.terminal-window{width:100%;background:#000;border:2px solid var(--green-dim);box-shadow:0 0 40px rgba(0,205,0,0.12),0 0 0 1px #001a00}
+.terminal-window.minimized{display:none}
+.terminal-topbar{background:#000;border-bottom:2px solid var(--green-dim);display:flex;align-items:center;height:36px;user-select:none}
+.terminal-menu-bar{display:flex;align-items:center;padding:0 8px;flex-shrink:0}
+.terminal-menu-item{font-family:var(--mono);font-size:0.75rem;color:rgba(255,255,255,0.65);padding:6px 9px;letter-spacing:0.5px;transition:background 0.15s,color 0.15s}
+.terminal-menu-item:hover{background:rgba(0,205,0,0.12);color:var(--green)}
+.terminal-topbar-title{flex:1;text-align:center;font-family:var(--mono);font-size:0.65rem;color:#444;letter-spacing:1px;pointer-events:none}
+.terminal-controls{display:flex;align-items:center;gap:7px;padding:0 12px;flex-shrink:0}
+.win-btn{width:13px;height:13px;border-radius:50%;border:none;position:relative;display:flex;align-items:center;justify-content:center;transition:filter 0.15s,transform 0.1s}
+.win-btn:hover{filter:brightness(1.3);transform:scale(1.1)}
+.win-btn:active{transform:scale(0.93)}
+.win-btn.close{background:#ff5f57}
+.win-btn.minimize{background:#febc2e}
+.win-btn.maximize{background:#28c840}
+.win-btn::after{content:'';font-family:var(--mono);font-size:7px;font-weight:bold;color:rgba(0,0,0,0.65);line-height:1;opacity:0;transition:opacity 0.1s;position:absolute}
+.win-btn:hover::after{opacity:1}
+.win-btn.close::after{content:'✕'}
+.win-btn.minimize::after{content:'—';margin-top:2px}
+.win-btn.maximize::after{content:'⤢'}
+.terminal-body{display:flex;min-height:460px}
+.terminal-text-col{flex:1;padding:22px 26px;font-family:var(--mono);font-size:0.88rem;line-height:1.9;color:#c8ffc8;overflow:hidden}
+.terminal-char-col{width:280px;flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;padding:0;overflow:hidden;position:relative}
+.terminal-char-col img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:320px;max-width:none;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;display:block}
+.t-prompt{color:var(--green);font-weight:bold}
+.t-cmd{color:#ddd}
+.t-out{color:#8fbc8f}
+.t-white{color:#fff}
+.t-blink{display:inline-block;width:9px;height:1em;background:var(--green);vertical-align:text-bottom;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.typed-line{overflow:hidden;white-space:nowrap;width:0;animation:type-in 0.7s steps(50,end) forwards}
+.typed-line:nth-child(1){animation-delay:0.1s}
+.typed-line:nth-child(2){animation-delay:0.6s}
+.typed-line:nth-child(3){animation-delay:1.1s}
+.typed-line:nth-child(4){animation-delay:1.5s}
+.typed-line:nth-child(5){animation-delay:1.9s}
+.typed-line:nth-child(6){animation-delay:2.3s}
+.typed-line:nth-child(7){animation-delay:2.7s}
+.typed-line:nth-child(8){animation-delay:3.1s}
+.typed-line:nth-child(9){animation-delay:3.5s}
+.typed-line:nth-child(10){animation-delay:3.9s}
+.typed-line:nth-child(11){animation-delay:4.2s}
+.typed-line:nth-child(12){animation-delay:4.5s}
+.typed-line:nth-child(13){animation-delay:4.8s}
+.typed-line:nth-child(14){animation-delay:5.1s}
+.typed-line:nth-child(15){animation-delay:5.3s}
+.typed-line:nth-child(16){animation-delay:5.5s}
+@keyframes type-in{from{width:0}to{width:100%}}
+/* MINIMIZED */
+.minimized-stage{display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.minimized-stage.visible{display:flex}
+.minimized-stage img{max-width:200px;image-rendering:pixelated;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.restore-btn{font-family:var(--pixel);font-size:0.48rem;color:var(--black);background:var(--green);border:none;padding:10px 18px;letter-spacing:1px;text-transform:uppercase;box-shadow:4px 4px 0 var(--green-dim);transition:background 0.15s,box-shadow 0.15s}
+.restore-btn:hover{background:var(--green-bright);box-shadow:2px 2px 0 var(--green-dim)}
+.restore-label{font-family:var(--pixel);font-size:0.42rem;color:var(--green-dim);letter-spacing:1px;animation:blink 1.5s step-end infinite}
+/* SHARED */
+.section{padding:80px 0}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-title{font-family:var(--pixel);font-size:0.82rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:14px;color:var(--green)}
+.section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--green-dim),transparent)}
+.pixel-accent{display:inline-block;width:8px;height:8px;background:var(--green);flex-shrink:0;animation:blink 2s infinite}
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease,transform 0.5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+/* EDUCATION */
+.education{background:url('images/photo-1629654291663-b91ad427698f.jpeg') center/cover no-repeat;position:relative}
+.education::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.83)}
+.education .container{position:relative;z-index:1}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.edu-card{border-left:3px solid var(--green);padding:22px 22px 22px 26px;background:rgba(0,0,0,0.5);border-top:1px solid rgba(0,205,0,0.12);border-right:1px solid rgba(0,205,0,0.07);border-bottom:1px solid rgba(0,205,0,0.07)}
+.edu-school{font-family:var(--mono);font-size:0.74rem;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.edu-degree{font-family:var(--head);font-size:1.05rem;font-weight:500;color:var(--white);margin-bottom:4px;line-height:1.4}
+.edu-dates{font-family:var(--mono);font-size:0.72rem;color:var(--green-dim);margin-bottom:12px;letter-spacing:1px}
+.edu-desc{font-size:0.88rem;color:rgba(255,255,255,0.7);line-height:1.75}
+/* EXPERIENCE */
+.experience{background:linear-gradient(180deg,#000 0%,#050d05 50%,#000 100%);border-top:1px solid var(--green-dim);border-bottom:1px solid var(--green-dim)}
+.exp-card{display:flex;gap:36px;align-items:flex-start;background:rgba(0,205,0,0.03);border:1px solid rgba(0,205,0,0.15);padding:32px}
+.exp-logo{width:100px;flex-shrink:0}
+.exp-logo img{width:100%;background:transparent;padding:0px;border:none;box-shadow:none}
+.exp-content{flex:1}
+.exp-title{font-family:var(--pixel);font-size:0.55rem;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;line-height:1.7}
+.exp-dates{font-family:var(--mono);color:var(--green-dim);font-size:0.78rem;letter-spacing:1px;margin-bottom:16px}
+.exp-list li{position:relative;padding-left:18px;margin-bottom:9px;color:rgba(255,255,255,0.78);font-size:0.9rem;line-height:1.65}
+.exp-list li::before{content:'▸';position:absolute;left:0;color:var(--green)}
+/* CERTIFICATIONS */
+.certifications{background:#000}
+.cert-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;max-width:1000px;margin:0 auto}
+.cert-item{flex:0 0 calc((100% - 44px)/3);max-width:calc((100% - 44px)/3);text-align:center;padding:28px 18px;background:#0a0a0a;border:1px solid var(--green-dim);transition:border-color 0.2s,box-shadow 0.2s}
+.cert-item:hover{border-color:var(--green);box-shadow:0 0 18px rgba(0,205,0,0.1)}
+@media (max-width:900px){.cert-item{flex:0 0 calc((100% - 22px)/2);max-width:calc((100% - 22px)/2)}}
+@media (max-width:650px){.cert-item{flex:0 0 100%;max-width:100%}}
+.cert-item img{height:68px;width:auto;object-fit:contain;margin:0 auto 14px}
+.cert-name{font-family:var(--mono);font-size:0.8rem;color:rgba(255,255,255,0.88);margin-bottom:10px;letter-spacing:1px}
+.cert-badge{font-family:var(--pixel);font-size:0.4rem;padding:5px 10px;display:inline-block;letter-spacing:1px}
+.cert-badge.done{background:#003a00;color:var(--green);border:1px solid var(--green-dim)}
+.cert-badge.progress{background:#1a1200;color:#ffd200;border:1px solid #554400}
+/* PROJECTS */
+.projects{background:#000}
+.projects-carousel{position:relative;overflow:hidden;margin-top:24px}
+.project-track{display:flex;gap:22px;transition:transform 0.35s ease;will-change:transform}
+.project-item{min-width:calc(100% - 80px);flex:0 0 100%;min-height:530px;text-align:center;padding:28px 18px;background:transparent;border:1px solid var(--green-dim);transition:border-color 0.2s,box-shadow 0.2s}
+.project-item:hover{border-color:var(--green);box-shadow:0 0 25px rgba(0,205,0,0.3), 0 4px 15px rgba(0,0,0,0.5)}
+.project-item img{max-height:200px;width:auto;max-width:100%;object-fit:cover;margin:0 auto 14px;border-radius:6px;display:block}
+.project-desc{font-family:var(--mono);font-size:0.76rem;color:rgba(255,255,255,0.78);line-height:1.5;margin-top:10px;max-width:270px;margin-left:auto;margin-right:auto}
+.carousel-control{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:1px solid var(--green-dim);background:rgba(0,0,0,0.7);color:var(--green);font-size:1.4rem;cursor:pointer;z-index:2;transition:background 0.15s,border-color 0.15s}
+.carousel-control:hover{background:rgba(0,0,0,0.9);border-color:var(--green)}
+.carousel-control.prev{left:10px}
+.carousel-control.next{right:10px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:#000000;border:1px solid var(--green-dim);cursor:pointer}
+.carousel-dot.active{background:var(--green)}
+@media (min-width:900px){
+  .project-item{min-width:calc((100% - 44px) / 3);flex:0 0 calc((100% - 44px) / 3)}
+}
+@media (max-width:650px){
+  .project-item{min-width:calc(100% - 60px);flex:0 0 calc(100% - 60px)}
+}
+.cert-name{font-family:var(--mono);font-size:0.8rem;color:rgba(255,255,255,0.88);margin-bottom:10px;letter-spacing:1px}
+.cert-badge{font-family:var(--pixel);font-size:0.4rem;padding:5px 10px;display:inline-block;letter-spacing:1px}
+.cert-badge.done{background:#003a00;color:var(--green);border:1px solid var(--green-dim)}
+.cert-badge.progress{background:#1a1200;color:#ffd200;border:1px solid #554400}
+/* SKILLS */
+.skills{background:#000;border-top:1px solid var(--green-dim);border-bottom:1px solid var(--green-dim)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skill-item{text-align:center;padding:24px 14px;background:#0a0a0a;border:1px solid var(--green-dim);transition:border-color 0.2s,background 0.2s}
+.skill-item:hover{border-color:var(--green);background:rgba(0,205,0,0.04)}
+.skill-item img{height:50px;width:auto;object-fit:contain;margin:0 auto 11px}
+.skill-label{font-family:var(--mono);font-size:0.73rem;color:rgba(255,255,255,0.72);line-height:1.5}
+/* CONTACT */
+.contact{background:#fff}
+.contact .section-title{color:#000}
+.contact .section-title::after{background:linear-gradient(90deg,#00cd00,transparent)}
+.contact .pixel-accent{background:#00cd00}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.contact-card{background:#fff;border:1px solid #d0d0d0;padding:26px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s,box-shadow 0.2s}
+.contact-card:hover{border-color:var(--green);box-shadow:0 4px 18px rgba(0,205,0,0.1)}
+.contact-icon{width:50px;height:50px;object-fit:contain;image-rendering:pixelated}
+.contact-type{font-family:var(--head);font-size:1.05rem;font-weight:600;color:#111;letter-spacing:1px}
+.contact-desc{font-size:0.86rem;color:#555;line-height:1.6}
+.btn-contact{font-family:var(--mono);font-size:0.78rem;color:var(--green-dim);border-bottom:1px solid var(--green-dim);display:inline-block;padding-bottom:2px;align-self:flex-start;transition:color 0.15s}
+.btn-contact:hover{color:#005a00}
+/* FOOTER */
+footer{background:#000;border-top:2px solid var(--green-dim);color:rgba(255,255,255,0.45);text-align:center;padding:30px 24px;font-family:var(--mono);font-size:0.78rem;line-height:1.9}
+footer span{color:var(--green-dim)}
+/* RESPONSIVE */
+@media(max-width:900px){
+.edu-grid{grid-template-columns:1fr}
+.cert-grid{grid-template-columns:repeat(2,1fr)}
+.skills-grid{grid-template-columns:repeat(2,1fr)}
+.contact-grid{grid-template-columns:1fr}
+.terminal-char-col{width:200px}
+.terminal-char-col img{width:170px}
+.exp-card{flex-direction:column;gap:18px}
+.exp-logo{width:80px}
+}
+@media(max-width:650px){
+nav ul{display:none}
+.hamburger{display:flex}
+.cert-grid{grid-template-columns:1fr}
+.skills-grid{grid-template-columns:repeat(2,1fr)}
+.terminal-char-col{display:none}
+.terminal-text-col{font-size:0.76rem;padding:14px}
+.section-title{font-size:0.62rem}
+.nav-logo span{display:none}
+}
+
+.win-btn{cursor:pointer!important}
+.hamburger,.restore-btn,.btn-contact,.mobile-menu a,nav ul a,a,button{cursor:pointer!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.exit-modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);display:none;align-items:center;justify-content:center;padding:24px;z-index:2000}
+.exit-modal.show{display:flex}
+.exit-dialog{width:min(92vw,460px);background:#050505;border:2px solid var(--green-dim);box-shadow:0 0 28px rgba(0,205,0,0.16);padding:24px}
+.exit-title{font-family:var(--pixel);font-size:0.62rem;line-height:1.8;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.exit-text{font-family:var(--mono);font-size:0.95rem;line-height:1.8;color:#d6ffd6;margin-bottom:22px}
+.exit-actions{display:flex;flex-wrap:wrap;gap:12px}
+.exit-action{font-family:var(--pixel);font-size:0.46rem;border:none;padding:12px 18px;letter-spacing:1px;text-transform:uppercase;transition:transform 0.12s,box-shadow 0.12s,background 0.12s;cursor:pointer!important}
+.exit-action:hover{transform:translateY(-1px)}
+.exit-action:focus-visible,.win-btn:focus-visible,.restore-btn:focus-visible,.hamburger:focus-visible,a:focus-visible{outline:2px solid var(--green-bright);outline-offset:3px}
+.exit-action.continue-btn{background:var(--green);color:var(--black);box-shadow:4px 4px 0 var(--green-dim)}
+.exit-action.continue-btn:hover{background:var(--green-bright);box-shadow:2px 2px 0 var(--green-dim)}
+.exit-action.exit-btn{background:#ff5f57;color:#111;box-shadow:4px 4px 0 #8f2d28}
+.exit-action.exit-btn:hover{background:#ff7d77;box-shadow:2px 2px 0 #8f2d28}
+body.modal-open{overflow:hidden}
+@media(max-width:650px){
+.exit-dialog{padding:18px}
+.exit-title{font-size:0.56rem}
+.exit-text{font-size:0.88rem}
+.exit-action{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<svg id="cursorSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22">
+  <path d="M1,1 L1,18 L5,14 L8,21 L10,20 L7,13 L13,13 Z" fill="white" stroke="white" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M1,1 L1,18 L5,14 L8,21 L10,20 L7,13 L13,13 Z" fill="black"/>
+</svg>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/show1.png" alt="Logo">
+      <span>Tebogo Matseding</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="projects/projects.html">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="#education">Education</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="terminal-window" id="terminalWindow">
+      <div class="terminal-topbar">
+        <div class="terminal-menu-bar">
+          <span class="terminal-menu-item">File</span>
+          <span class="terminal-menu-item">Edit</span>
+          <span class="terminal-menu-item">View</span>
+          <span class="terminal-menu-item">Search</span>
+          <span class="terminal-menu-item">Terminal</span>
+          <span class="terminal-menu-item">Help</span>
+        </div>
+        <span class="terminal-topbar-title">tebogomatseding@administrator</span>
+        <div class="terminal-controls">
+          <button class="win-btn minimize" id="btnMinimize" title="Minimize" aria-label="Minimize terminal"></button>
+          <button class="win-btn maximize" id="btnMaximize" title="Maximize" aria-label="Maximize terminal"></button>
+          <button class="win-btn close" id="btnClose" title="Close" aria-label="Close terminal"></button>
+        </div>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-text-col">
+          <div class="typed-line"><span class="t-prompt">tebogomatseding@administrator</span><span class="t-cmd">:~$ whoami</span></div>
+          <div class="typed-line"><span class="t-out">Aspiring Cloud Architect &amp; Network Engineer</span></div>
+          <div class="typed-line">&nbsp;</div>
+          <div class="typed-line"><span class="t-prompt">tebogomatseding@administrator</span><span class="t-cmd">:~$ cat about_me.txt</span></div>
+          <div class="typed-line"><span class="t-out">Aspiring IT professional focused on</span></div>
+          <div class="typed-line"><span class="t-out">security engineering, networking, and cloud infrastructure.</span></div>
+          <div class="typed-line">&nbsp;</div>
+          <div class="typed-line"><span class="t-out">Hands-on experience building and securing Linux servers,</span></div>
+          <div class="typed-line"><span class="t-out">configuring Windows Server, deploying cloud environments in AWS &amp; Azure.</span></div>
+          <div class="typed-line">&nbsp;</div>
+          <div class="typed-line"><span class="t-out">- Linux (server deployment, hardening, permissions)</span></div>
+          <div class="typed-line"><span class="t-out">- Windows Server (administration)</span></div>
+          <div class="typed-line"><span class="t-out">- AWS (EC2, networking, basic infrastructure)</span></div>
+          <div class="typed-line"><span class="t-out">- Networking fundamentals (IP, DNS, routing, ports)</span></div>
+          <div class="typed-line">&nbsp;</div>
+          <div class="typed-line"><span class="t-prompt">tebogomatseding@administrator</span><span class="t-cmd">:~$ echo "Secure by design."</span></div>
+          <div class="typed-line"><span class="t-white">Secure by design.</span></div>
+          <br>
+          <span class="t-prompt">tebogomatseding@administrator</span><span class="t-cmd">:~$ <span class="t-blink"></span></span>
+        </div>
+        <div class="terminal-char-col">
+          <img src="images/Feb24202611_00_51AM.png" alt="Tebogo pixel character" title="tebogomatseding@administrator">
+        </div>
+      </div>
+    </div>
+    <div class="minimized-stage" id="minimizedStage">
+      <div class="restore-label">[ terminal minimized ]</div>
+      <button class="restore-btn" id="btnRestore">&#9650; Maximize Terminal</button>
+      <img src="images/Feb24202611_00_51AM.png" alt="Tebogo pixel character">
+    </div>
+  </div>
+</section>
+
+<section class="education section" id="education">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-in">
+        <div class="edu-school">Eduvos Midrand</div>
+        <div class="edu-degree">Higher Certificate in Information Systems: Cloud Computing</div>
+        <div class="edu-dates">Completed - 2025</div>
+        <p class="edu-desc">Completed a full-time Higher Certificate focused on cloud computing, systems administration, and IT fundamentals. Gained hands-on experience across cloud platforms, operating systems, networking, security, and virtualization.</p>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-school">Eduvos Midrand</div>
+        <div class="edu-degree">Bachelor of Science in Information Technology: Security and Network Engineering</div>
+        <div class="edu-dates">2026 - 2028</div>
+        <p class="edu-desc">Starting a BSc in IT to build on my cloud computing foundation, with deeper focus on software development, advanced networking, cybersecurity, and enterprise IT systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience section" id="experience">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>Experience</h2>
+    <div class="exp-card fade-in">
+      <div class="exp-logo">
+        <img src="images/images1.png" alt="Archive TFG">
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Sales Associate - Archive (TFG)</div>
+        <div class="exp-dates">Nov 2025 - Dec 2025</div>
+        <ul class="exp-list">
+          <li>Led in-store sales by actively engaging customers and driving product interest</li>
+          <li>Assisted customers with product selection and provided tailored styling advice</li>
+          <li>Maintained store presentation standards, ensuring displays were clean and well-stocked</li>
+          <li>Kept up to date with the latest footwear and fashion trends to better assist customers</li>
+          <li>Delivered excellent customer service to create a positive shopping experience</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="certifications section" id="certifications">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>Certifications</h2>
+    <div class="cert-grid">
+      
+      <div class="cert-item fade-in">
+        <a href="files/CompTIA A+.pdf" target="_blank">
+          <img src="images/aplus-logo.webp" alt="CompTIA A+">
+        </a>
+        <div class="cert-name">CompTIA A+</div>
+        <span class="cert-badge done">&#10003; Certified</span>
+      </div>
+
+      <div class="cert-item fade-in">
+        <a href="files/CmpTIA Network +.pdf" target="_blank">
+          <img src="images/networkplus-logo.png" alt="CompTIA Network+">
+        </a>
+        <div class="cert-name">CompTIA Network+</div>
+        <span class="cert-badge done">&#10003; Certified</span>
+      </div>
+
+      <div class="cert-item fade-in">
+        <img src="images/ChatGPT Image Mar 25, 2026, 07_21_15 PM - Edited.png" alt="Security+">
+        <div class="cert-name">CompTIA Security+</div>
+        <span class="cert-badge progress">In Progress</span>
+      </div>
+
+      <div class="cert-item fade-in">
+        <img src="images/1649839178239.png" alt="Cert">
+        <div class="cert-name">Azure 900</div>
+        <span class="cert-badge progress">In Progress</span>
+      </div>
+
+      <div class="cert-item fade-in">
+        <img src="images/image.png" alt="Cert">
+        <div class="cert-name">AWS Cloud Practitioner</div>
+        <span class="cert-badge progress">In Progress</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="projects section" id="projects">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>Projects</h2>
+    <div class="projects-carousel" aria-label="Projects carousel">
+      <button class="carousel-control prev" id="projectPrev" aria-label="Previous project">&#8249;</button>
+      <div class="project-track" id="projectTrack">
+        <!-- School Projects -->
+        <div class="project-item fade-in">
+          <img src="images/Tux.svg.png" alt="Automated Log Management Script">
+          <div class="cert-name">Automated Log Management Script</div>
+          <p class="project-desc">Shell script that archives .log files older than 7 days, automating routine log cleanup tasks on Linux systems.</p>
+          <a class="btn-contact" href="projects/Automated Log Management Script.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Microsoft_Azure.svg.png" alt="Azure Virtual Machines Deployment">
+          <div class="cert-name">Azure Virtual Machines Deployment</div>
+          <p class="project-desc">Deployed Ubuntu Server 24.04 and Windows 10 VMs on Azure, learning cloud provisioning and resource management.</p>
+          <a class="btn-contact" href="projects/Azure Virtual Machines Deployment.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Amazon_Web_Services-Logo.wine.png" alt="Beginners Guide to AWS Pricing Calculator">
+          <div class="cert-name">Beginners Guide to AWS Pricing Calculator</div>
+          <p class="project-desc">Explored the AWS Pricing Calculator by adding EC2 instances, storage, and comparing pricing models for cost estimation.</p>
+          <a class="btn-contact" href="projects/Beginners Guide to AWS Pricing Calculator.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Hyper-V_logo.png" alt="Configuring a Private Virtual Network in Hyper-V">
+          <div class="cert-name">Configuring a Private Virtual Network in Hyper-V</div>
+          <p class="project-desc">Created an isolated private network between two Hyper-V VMs, enabling inter-VM communication without host access.</p>
+          <a class="btn-contact" href="projects/Configuring a Private Virtual Network in Hyper-V.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Amazon_Web_Services-Logo.wine.png" alt="EC2 Setup & SSH Access Guide">
+          <div class="cert-name">EC2 Setup &amp; SSH Access Guide</div>
+          <p class="project-desc">Configured a custom AWS VPC, launched an EC2 instance, and established SSH access with a public IP and security groups.</p>
+          <a class="btn-contact" href="projects/EC2 Setup & SSH Access Guide.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/VirtualBox_2024_Logo.svg.png" alt="Implementation and Simulation of a Virtualised Environment">
+          <div class="cert-name">Implementation &amp; Simulation of a Virtualised Environment</div>
+          <p class="project-desc">Built a Windows Server environment in VirtualBox with Active Directory, DNS, SQL Server, and IIS to simulate a real office setup.</p>
+          <a class="btn-contact" href="projects/Implementation and Simulation of a Virtualised Environment.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Tux.svg.png" alt="Linux Virtual Machines and File Management Using VirtualBox">
+          <div class="cert-name">Linux VMs &amp; File Management Using VirtualBox</div>
+          <p class="project-desc">Created and managed two Linux VMs in VirtualBox, performing file and directory operations entirely through the terminal.</p>
+          <a class="btn-contact" href="projects/Linux Virtual Machines and File Management Using VirtualBox.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Kali-dragon-icon.svg.png" alt="Penetration Testing Lab Kali Metasploitable">
+          <div class="cert-name">Penetration Testing Lab: Kali &amp; Metasploitable</div>
+          <p class="project-desc">Set up a virtual lab with Kali Linux and Metasploitable 2, performing network scanning and exploitation techniques.</p>
+          <a class="btn-contact" href="projects/Penetration Testing Lab Kali Metasploitable.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Microsoft_Azure.svg.png" alt="Storage Configuration Project">
+          <div class="cert-name">Storage Configuration Project</div>
+          <p class="project-desc">Configured Azure Blob Storage for an organisation, creating resource groups, storage accounts, and access controls.</p>
+          <a class="btn-contact" href="projects/Storage Configuration Project.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/comptia-network-0_1_orig.png" alt="Virtual Network Configuration With Subnetting">
+          <div class="cert-name">Virtual Network Configuration With Subnetting</div>
+          <p class="project-desc">Calculated subnet ranges and assigned static IPs across a small VirtualBox virtual network environment.</p>
+          <a class="btn-contact" href="projects/Virtual Network Configuration With Subnetting.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Picture1.jpg" alt="Virtual Office Infrastructure">
+          <div class="cert-name">Virtual Office Infrastructure</div>
+          <p class="project-desc">Simulated a real-world IT office in Hyper-V with remote server and network printer management.</p>
+          <a class="btn-contact" href="projects/Virtual Office Infrastructure with Remote Server and Printer Management.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Hyper-V_logo.png" alt="Virtual Machine Deployment Using Hyper-V">
+          <div class="cert-name">Virtual Machine Deployment Using Hyper-V</div>
+          <p class="project-desc">Set up Windows 10 and Windows Server 2016 VMs in Hyper-V, configuring resources, networking, and snapshots.</p>
+          <a class="btn-contact" href="projects/Virtual Machine Deployment Using Hyper-V.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Windows_logo_-_2012.svg.png" alt="Virtualization And GPO Deployment">
+          <div class="cert-name">Virtualization &amp; GPO Deployment</div>
+          <p class="project-desc">Deployed a Windows Server domain with Active Directory, DNS, and Group Policy Objects for centralised policy management.</p>
+          <a class="btn-contact" href="projects/Virtualization And GPO Deployment.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/photo-1506399558188-acca6f8cbf41.jpeg" alt="Virtualization Challenges in the IT World">
+          <div class="cert-name">Virtualization Challenges in the IT World</div>
+          <p class="project-desc">Analysed virtualization challenges and compared VMware, Hyper-V, and VirtualBox on performance, security, and scalability.</p>
+          <a class="btn-contact" href="projects/Virtualization Challenges in the IT World.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Picture2.png" alt="Vulnerability Assessment For Eduvos Web App">
+          <div class="cert-name">Vulnerability Assessment: Eduvos Web App</div>
+          <p class="project-desc">Conducted a simulated web app vulnerability assessment using Nmap, Burp Suite, OWASP ZAP, and OpenVAS with POPIA compliance focus.</p>
+          <a class="btn-contact" href="projects/Vulnerability Assessment For Eduvos Web App.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <!-- Personal Projects -->
+        <div class="project-item fade-in">
+          <img src="images/PowerShell_5.0_icon.png" alt="Automated AD User Creation Using Powershell And CSV">
+          <div class="cert-name">Automated AD User Creation via PowerShell &amp; CSV</div>
+          <p class="project-desc">Automated IT onboarding by bulk-creating Active Directory users from a CSV file using a PowerShell script.</p>
+          <a class="btn-contact" href="projects/Automated AD User Creation Using Powershell And CSV.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/photo-1721830834983-f111ad63dbf4.jpeg" alt="Clearing Stuck Print Jobs In The Queue">
+          <div class="cert-name">Clearing Stuck Print Jobs In The Queue</div>
+          <p class="project-desc">Resolved stuck print queue issues through service restarts and manual queue management — a common Tier 1 helpdesk scenario.</p>
+          <a class="btn-contact" href="projects/Clearing Stuck Print Jobs In The Queue.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/PowerShell_5.0_icon.png" alt="Domain Setup & Policy Enforcement with Powershell">
+          <div class="cert-name">Domain Setup &amp; Policy Enforcement with PowerShell</div>
+          <p class="project-desc">Configured GPOs and drive mapping via PowerShell to enforce domain-wide security and department-level policies.</p>
+          <a class="btn-contact" href="projects/Domain Setup & Policy Enforcement with Powershell.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Tux.svg.png" alt="Hardened MySQL Deployment">
+          <div class="cert-name">Hardened MySQL Deployment</div>
+          <p class="project-desc">Locked down a MySQL environment inside a private virtual network with strict firewall rules and a dedicated remote admin server.</p>
+          <a class="btn-contact" href="projects/Hardened MySQL Deployment.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Tux.svg.png" alt="Initializing a New Hard Disk on Linux">
+          <div class="cert-name">Initializing a New Hard Disk on Linux</div>
+          <p class="project-desc">Identified, partitioned, formatted, and mounted a new HDD on Linux for file storage using fdisk and mkfs.</p>
+          <a class="btn-contact" href="projects/Initializing a New Hard Disk on Linux.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Microsoft_Azure.svg.png" alt="Monitoring and Alerting on Azure VM Performance">
+          <div class="cert-name">Monitoring &amp; Alerting on Azure VM Performance</div>
+          <p class="project-desc">Implemented a full Azure Monitor and alerting solution to detect and respond to VM performance anomalies in real time.</p>
+          <a class="btn-contact" href="projects/Monitoring and Alerting on Azure VM Performance.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Windows-10-network-drive-icon.png" alt="Remapping a Network Drive After a Password Change">
+          <div class="cert-name">Remapping a Network Drive After a Password Change</div>
+          <p class="project-desc">Resolved disconnected network drives caused by password changes using GPO and manual remapping techniques.</p>
+          <a class="btn-contact" href="projects/Remapping a Network Drive After a Password Change.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/incorrect password.png" alt="Resetting a Forgotten User Password in Active Directory">
+          <div class="cert-name">Resetting a Forgotten AD User Password</div>
+          <p class="project-desc">Walked through AD password reset with account unlock steps and IT support best practices for smooth user recovery.</p>
+          <a class="btn-contact" href="projects/Resetting a Forgotten User Password in Active Directory.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Tux.svg.png" alt="Secure Headless Database Infrastructure Using VirtualBox">
+          <div class="cert-name">Secure Headless Database Infrastructure</div>
+          <p class="project-desc">Set up a headless MySQL server in VirtualBox accessible only via SSH from a remote admin VM — no direct local access.</p>
+          <a class="btn-contact" href="projects/Secure Headless Database Infrastructure Using VirtualBox.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Microsoft_Azure.svg.png" alt="Secure VM with Azurite Blob Storage Backup">
+          <div class="cert-name">Secure VM with Azurite Blob Storage Backup</div>
+          <p class="project-desc">Hardened a Linux VM with Fail2Ban and automated backup scripts pushing data to an Azurite blob storage emulator.</p>
+          <a class="btn-contact" href="projects/Secure VM with Azurite Blob Storage Backup.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/CVSS_4.0-complete-signature-RGB.svg.png" alt="SOP Vulnerability Assessment">
+          <div class="cert-name">SOP: Vulnerability Assessment</div>
+          <p class="project-desc">Created a structured SOP covering the full vulnerability assessment lifecycle — identification, analysis, and remediation.</p>
+          <a class="btn-contact" href="projects/Standard Operating Procedure (SOP)Vulnerability Assessment.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Amazon_Web_Services-Logo.wine.png" alt="Static Portfolio Website with SSL Certs">
+          <div class="cert-name">Static Portfolio Website with SSL Certs</div>
+          <p class="project-desc">Hosted a secure static site on AWS S3 with Route 53, CloudFront CDN, and an ACM SSL/TLS certificate.</p>
+          <a class="btn-contact" href="projects/Static Portfolio Website with SSL Certs.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Microsoft_OneDrive_Icon_(2025_-_present).svg.png" alt="Troubleshooting Guide for OneDrive">
+          <div class="cert-name">Troubleshooting Guide for OneDrive</div>
+          <p class="project-desc">Step-by-step Tier 1 guide for common OneDrive sync, access, and Microsoft 365 integration issues.</p>
+          <a class="btn-contact" href="projects/Troubleshooting Guide for OneDrive.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/al-amin-mir-sUY_XCkKBzg-unsplash (2).jpg" alt="Troubleshooting Guide for Printers">
+          <div class="cert-name">Troubleshooting Guide for Printers</div>
+          <p class="project-desc">Comprehensive Tier 1 printer guide covering connections, drivers, print queues, and network printer issues.</p>
+          <a class="btn-contact" href="projects/Troubleshooting Guide for Printers.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Picture12.jpg" alt="Wi-Fi Troubleshooting Basics">
+          <div class="cert-name">Wi-Fi Troubleshooting Basics</div>
+          <p class="project-desc">Structured Tier 1 guide for diagnosing Wi-Fi issues — from checking physical connections to escalating ISP-level problems.</p>
+          <a class="btn-contact" href="projects/Wi-Fi Troubleshooting Basics.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+      </div>
+      <button class="carousel-control next" id="projectNext" aria-label="Next project">&#8250;</button>
+    </div>
+    <div class="carousel-dots" id="projectDots"></div>
+    <div style="text-align:center;margin-top:28px">
+      <a href="projects/projects.html" class="btn-contact" style="font-family:var(--pixel);font-size:0.42rem;letter-spacing:2px;padding-bottom:3px">View All Projects &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<section class="skills section" id="skills">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item fade-in"><img src="images/Windows_logo_-_2012.svg.png" alt="Windows"><p class="skill-label">Windows Administration</p></div>
+      <div class="skill-item fade-in"><img src="images/Tux.svg.png" alt="Linux"><p class="skill-label">Linux OS Fundamentals &amp; Server Management</p></div>
+      <div class="skill-item fade-in"><img src="images/networkplus-logo.png" alt="Networking"><p class="skill-label">Network Configuration &amp; Troubleshooting</p></div>
+      <div class="skill-item fade-in"><img src="images/Amazon_Web_Services-Logo.wine.png" alt="AWS"><p class="skill-label">AWS Cloud Service Setup</p></div>
+      <div class="skill-item fade-in"><img src="images/Microsoft_Azure.svg.png" alt="Azure"><p class="skill-label">Azure Cloud Service Setup</p></div>
+      <div class="skill-item fade-in"><img src="images/ChatGPT Image Mar 25, 2026, 07_21_15 PM - Edited.png" alt="Security"><p class="skill-label">Security Best Practices &amp; Hardening</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact section" id="contact">
+  <div class="container">
+    <h2 class="section-title"><span class="pixel-accent"></span>Contact Me</h2>
+    <div class="contact-grid">
+      <div class="contact-card fade-in">
+        <img class="contact-icon" src="images/linkedin_pixel_logo_icon_181925.png" alt="LinkedIn">
+        <div class="contact-type">LinkedIn</div>
+        <p class="contact-desc">Connect with me to see my professional journey and projects.</p>
+        <a class="btn-contact" href="https://www.linkedin.com/in/tebogo-matseding-12b5a937b" target="_blank">LinkedIn Profile &#8594;</a>
+      </div>
+      <div class="contact-card fade-in">
+        <img class="contact-icon" src="images/Pngtreepixelmailiconenvelopeui_154701081.png" alt="Email">
+        <div class="contact-type">Email</div>
+        <p class="contact-desc">Drop me a message anytime for questions, collaboration, or just to say hi.</p>
+        <a class="btn-contact" href="mailto:tmatseding@outlook.com">tmatseding@outlook.com &#8594;</a>
+      </div>
+      <div class="contact-card fade-in">
+        <img class="contact-icon" src="images/ChatGPTImageFeb24202606_27_31PM.png" alt="GitHub">
+        <div class="contact-type">GitHub</div>
+        <p class="contact-desc">Check out my code, experiments, and ongoing projects.</p>
+        <a class="btn-contact" href="https://github.com/Tebogo-Matseding" target="_blank">GitHub Profile &#8594;</a>
+      </div>
+      <div class="contact-card fade-in">
+        <img class="contact-icon" src="images/pixel_art11.png" alt="YouTube">
+        <div class="contact-type">YouTube</div>
+        <p class="contact-desc">Explore my walkthroughs, labs, and real IT projects.</p>
+        <a class="btn-contact" href="https://www.youtube.com/@tebogomtech" target="_blank">YouTube Channel &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="exit-modal" id="exitModal" aria-hidden="true">
+  <div class="exit-dialog" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" aria-describedby="exitModalText">
+    <h2 class="exit-title" id="exitModalTitle">Exit Website?</h2>
+    <p class="exit-text" id="exitModalText">Are you sure you want to exit the website, or would you like to continue browsing?</p>
+    <div class="exit-actions">
+      <button class="exit-action continue-btn" id="continueSiteBtn" type="button">Continue Website</button>
+      <button class="exit-action exit-btn" id="confirmExitBtn" type="button">Exit Website</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&#169; 2025 Tebogo Matseding<br>
+  <span>Passionate about cloud, security, and tech that just works.</span></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var cur = document.getElementById('cursorSvg');
+document.addEventListener('mousemove', function(e) {
+  if (cur) {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top  = e.clientY + 'px';
+  }
+});
+
+var termWin    = document.getElementById('terminalWindow');
+var minStage   = document.getElementById('minimizedStage');
+var btnMin     = document.getElementById('btnMinimize');
+var btnMax     = document.getElementById('btnMaximize');
+var btnClose   = document.getElementById('btnClose');
+var btnRestore = document.getElementById('btnRestore');
+var hamburger  = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobileMenu');
+var exitModal  = document.getElementById('exitModal');
+var continueSiteBtn = document.getElementById('continueSiteBtn');
+var confirmExitBtn  = document.getElementById('confirmExitBtn');
+var lastFocusedElement = null;
+
+function minimizeTerminal() {
+  termWin.classList.add('minimized');
+  minStage.classList.add('visible');
+}
+
+function maximizeTerminal() {
+  termWin.classList.remove('minimized');
+  minStage.classList.remove('visible');
+}
+
+function openExitModal() {
+  lastFocusedElement = document.activeElement;
+  exitModal.classList.add('show');
+  exitModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  continueSiteBtn.focus();
+}
+
+function closeExitModal() {
+  exitModal.classList.remove('show');
+  exitModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  if (lastFocusedElement) {
+    lastFocusedElement.focus();
+  }
+}
+
+function attemptExitWebsite() {
+  try {
+    window.open('', '_self');
+    window.close();
+  } catch (err) {
+    console.warn('Window close was blocked by the browser.', err);
+  }
+
+  setTimeout(function() {
+    if (!window.closed) {
+      window.location.href = 'https://www.google.com';
+    }
+  }, 120);
+}
+
+btnMin.addEventListener('click', minimizeTerminal);
+btnMax.addEventListener('click', maximizeTerminal);
+btnRestore.addEventListener('click', maximizeTerminal);
+
+btnClose.addEventListener('click', function(e) {
+  e.preventDefault();
+  openExitModal();
+});
+
+continueSiteBtn.addEventListener('click', function() {
+  closeExitModal();
+});
+
+confirmExitBtn.addEventListener('click', function() {
+  attemptExitWebsite();
+});
+
+exitModal.addEventListener('click', function(e) {
+  if (e.target === exitModal) {
+    closeExitModal();
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && exitModal.classList.contains('show')) {
+    closeExitModal();
+  }
+});
+
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', function() {
+    mobileMenu.classList.toggle('open');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+    });
+  });
+}
+
+if ('IntersectionObserver' in window) {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+} else {
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+
+var sections = document.querySelectorAll('section[id]');
+var navLinks = document.querySelectorAll('nav a');
+
+window.addEventListener('scroll', function() {
+  var current = '';
+  sections.forEach(function(section) {
+    if (window.scrollY >= section.offsetTop - 80) {
+      current = section.id;
+    }
+  });
+
+  navLinks.forEach(function(link) {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current || (current === 'home' && link.getAttribute('href') === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Projects carousel logic
+var projectTrack = document.getElementById('projectTrack');
+var projectItems = projectTrack ? projectTrack.querySelectorAll('.project-item') : [];
+var projectPrev = document.getElementById('projectPrev');
+var projectNext = document.getElementById('projectNext');
+var projectDots = document.getElementById('projectDots');
+var projectIndex = 0;
+
+function shuffleProjectItems() {
+  if (!projectTrack) return;
+  var items = Array.from(projectTrack.querySelectorAll('.project-item'));
+  for (var i = items.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = items[i];
+    items[i] = items[j];
+    items[j] = temp;
+  }
+  projectTrack.innerHTML = '';
+  items.forEach(function(item) {
+    projectTrack.appendChild(item);
+  });
+  projectItems = projectTrack.querySelectorAll('.project-item');
+  projectIndex = 0;
+}
+
+function updateProjectCarousel() {
+  if (!projectTrack || projectItems.length === 0) return;
+
+  var itemWidth = projectItems[0].getBoundingClientRect().width + 22;
+  projectTrack.style.transform = 'translateX(-' + (projectIndex * itemWidth) + 'px)';
+
+  if (projectDots) {
+    projectDots.querySelectorAll('.carousel-dot').forEach(function(dot, idx) {
+      dot.classList.toggle('active', idx === projectIndex);
+    });
+  }
+}
+
+function createProjectDots() {
+  if (!projectDots || projectItems.length === 0) return;
+  projectDots.innerHTML = '';
+  projectItems.forEach(function(_, idx) {
+    var dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (idx === projectIndex ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to project ' + (idx + 1));
+    dot.addEventListener('click', function() {
+      projectIndex = idx;
+      updateProjectCarousel();
+    });
+    projectDots.appendChild(dot);
+  });
+}
+
+if (projectItems.length > 0) {
+  shuffleProjectItems();
+  createProjectDots();
+  updateProjectCarousel();
+}
+
+if (projectPrev) {
+  projectPrev.addEventListener('click', function() {
+    projectIndex = (projectIndex - 1 + projectItems.length) % projectItems.length;
+    updateProjectCarousel();
+  });
+}
+
+if (projectNext) {
+  projectNext.addEventListener('click', function() {
+    projectIndex = (projectIndex + 1) % projectItems.length;
+    updateProjectCarousel();
+  });
+}
+</script>
+</body>
+</html>
