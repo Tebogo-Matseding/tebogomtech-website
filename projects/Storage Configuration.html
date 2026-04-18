@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- EDIT: Update title -->
-<title>Project Title – Tebogo Matseding</title>
+<title>Storage Configuration</title>
 <meta name="description" content="Project description goes here.">
 <link rel="icon" href="../images/show1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,15 +46,18 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ── CUSTOM CURSOR ── */
+#cursorSvg { display: none; }
+
 @media (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
   #cursorSvg {
+    display: block;
     position: fixed;
     top: 0; left: 0;
     width: 22px; height: 26px;
     pointer-events: none;
     z-index: 99999;
   }
+  *, *::before, *::after { cursor: none !important; }
 }
 
 /* ── NAV ── */
@@ -365,7 +368,7 @@ footer span { color: var(--green-dim); }
 
   <!-- 2. PROJECT TITLE -->
   <!-- EDIT: Replace with your project title -->
-  <h1 class="project-title">Storage Configuration Project</h1>
+  <h1 class="project-title">Storage Configuration</h1>
 
   <!-- 3. DATE -->
   <!-- EDIT: Replace with your project date -->
@@ -397,7 +400,7 @@ In this project, the main objective is to help Jane's organization in Southeast 
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
-        data-theme="dark_high_contrast"
+        data-theme="preferred_color_scheme"
         data-lang="en"
         crossorigin="anonymous"
         async>

@@ -46,15 +46,18 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ── CUSTOM CURSOR ── */
+#cursorSvg { display: none; }
+
 @media (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
   #cursorSvg {
+    display: block;
     position: fixed;
     top: 0; left: 0;
     width: 22px; height: 26px;
     pointer-events: none;
     z-index: 99999;
   }
+  *, *::before, *::after { cursor: none !important; }
 }
 
 /* ── NAV ── */
@@ -397,7 +400,7 @@ This guide explains how to set up a brand-new hard drive (HDD) in Linux so it ca
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
-        data-theme="dark_high_contrast"
+        data-theme="preferred_color_scheme"
         data-lang="en"
         crossorigin="anonymous"
         async>

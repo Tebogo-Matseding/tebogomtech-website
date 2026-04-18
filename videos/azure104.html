@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azure 104 - In Progress</title>
+<link rel="icon" href="../images/show1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Press+Start+2P&family=Oswald:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;cursor:none!important}
+#cursorSvg{position:fixed;top:0;left:0;width:22px;height:26px;pointer-events:none;z-index:99999}
+:root{
+  --black:#000;--green:#00cd00;--green-dim:#007a00;--green-bright:#00ff41;--white:#fff;
+  --pixel:'Press Start 2P',monospace;--mono:'Share Tech Mono',monospace;
+  --head:'Oswald',sans-serif;--body:'Raleway',sans-serif;--nav-h:95px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--black);color:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* NAV */
+header{background:var(--black);border-bottom:2px solid var(--green-dim);position:sticky;top:0;z-index:1000;height:var(--nav-h)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto;padding:0 40px;height:100%}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:80px;height:80px;image-rendering:pixelated}
+.nav-logo span{font-family:var(--pixel);font-size:1.1rem;color:var(--green);letter-spacing:3px;line-height:1.6;white-space:nowrap}
+nav ul{display:flex;gap:8px}
+nav ul a{font-family:var(--mono);font-size:0.88rem;color:var(--green);padding:6px 16px;border:1px solid transparent;letter-spacing:1px;text-transform:uppercase;transition:color 0.15s,border-color 0.15s}
+nav ul a:hover,nav ul a.active{color:var(--white);border-color:var(--green-dim)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--green)}
+.mobile-menu{display:none;background:var(--black);border-bottom:2px solid var(--green-dim);padding:12px 24px 20px}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;font-family:var(--mono);color:var(--green);padding:10px 0;border-bottom:1px solid var(--green-dim);font-size:0.9rem;letter-spacing:1px;text-transform:uppercase}
+.mobile-menu a:hover{color:var(--white)}
+
+/* LOADING PAGE */
+.page{
+  min-height:calc(100vh - var(--nav-h));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:32px;
+  padding:40px 24px;
+  background:#000;
+}
+.loading-title{
+  font-family:var(--pixel);
+  font-size:1.4rem;
+  color:var(--green);
+  letter-spacing:4px;
+  text-align:center;
+}
+.cert-name{
+  font-family: 'Press Start 2P', monospace;
+  color: var(--green);
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+.dots{
+  display:inline-block;
+  width:3ch;   /* reserves space for "..." */
+  text-align:left;
+}
+.dots::after{
+  content:"";
+  animation: dots 3s steps(4, end) infinite;
+}
+@keyframes dots{
+  0%   { content:""; }
+  25%  { content:"."; }
+  50%  { content:".."; }
+  75%  { content:"..."; }
+  100% { content:""; }
+}
+.bar-wrap{
+  width:min(780px, 90vw);
+}
+.bar-outer{
+  width:100%;
+  height:36px;
+  border:2px solid var(--white);
+  background:#000;
+  overflow:hidden;
+}
+.bar-fill{
+  height:100%;
+  width:0%;
+  background:var(--green);
+}
+@keyframes fill{from{width:0%}to{width:10%}
+}
+.pct{
+  font-family:var(--pixel);
+  font-size:1rem;
+  color:var(--green);
+  letter-spacing:2px;
+  text-align:center;
+}
+@keyframes flash{
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+.pct span{
+  animation: flash 1s infinite;
+}
+.walker{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:20px;
+}
+
+.walker video{
+  width:120px;
+  image-rendering:pixelated;
+  animation:walkMove 6s linear infinite;
+}
+.flash{
+  animation: flash 1s infinite;
+}
+
+@keyframes flash{
+  0%,100%{opacity:1;}
+  50%{opacity:0.2;}
+}
+/* FOOTER */
+footer{background:#000;border-top:2px solid var(--green-dim);color:rgba(255,255,255,0.45);text-align:center;padding:30px 24px;font-family:var(--mono);font-size:0.78rem;line-height:1.9}
+footer span{color:var(--green-dim)}
+
+@media(max-width:650px){
+  nav ul{display:none}
+  .hamburger{display:flex}
+  .nav-logo span{display:none}
+  .loading-title{font-size:0.9rem}
+  .bar-outer{height:26px}
+  .pct{font-size:0.75rem}
+}
+.hamburger,nav ul a,a,button{cursor:pointer!important}
+</style>
+</head>
+<body>
+
+<svg id="cursorSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22">
+  <path d="M1,1 L1,18 L5,14 L8,21 L10,20 L7,13 L13,13 Z" fill="white" stroke="white" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M1,1 L1,18 L5,14 L8,21 L10,20 L7,13 L13,13 Z" fill="black"/>
+</svg>
+
+<header>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/show1.png" alt="Logo">
+      <span>Tebogo Matseding</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#education">Education</a></li>
+        <li><a href="../index.html#certifications" class="active">Certifications</a></li>
+        <li><a href="../projects/projects.html">Projects</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#certifications">Certifications</a>
+    <a href="../projects/projects.html">Projects</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</header>
+
+<main class="page">
+  <div class="loading-title">Loading<span class="dots"></span></div>
+  <div class="bar-wrap">
+    <div class="bar-outer">
+      <div class="bar-fill" id="barFill"></div>
+    </div>
+  </div>
+  <div class="pct"><span id="pctNum">0%</span></div>
+
+  <div class="walker">
+  <video autoplay loop muted playsinline>
+    <source src="../videos/animation.webm" type="video/webm">
+  </video>
+</div>
+<div class="cert-name">Azure 104: Microsoft Azure Administrator</div>
+</main>
+<footer>
+  <p>&#169; 2025 Tebogo Matseding<br>
+  <span>Passionate about cloud, security, and tech that just works.</span></p>
+</footer>
+
+<script>
+// Custom cursor
+var cursorSvg = document.getElementById('cursorSvg');
+window.addEventListener('touchstart', function() {
+  if (cur) cur.style.display = 'none';
+  document.documentElement.style.setProperty('cursor', 'auto', 'important');
+}, { once: true, passive: true });
+document.addEventListener('mousemove', function(e) {
+  cursorSvg.style.left = e.clientX + 'px';
+  cursorSvg.style.top = e.clientY + 'px';
+});
+
+// Hamburger
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobileMenu');
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', function() { mobileMenu.classList.toggle('open'); });
+  mobileMenu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+  });
+}
+
+/// Counter synced to bar (delay 0.5s, duration 2.8s, target 57)
+var bar = document.getElementById('barFill');
+var pct = document.getElementById('pctNum');
+var duration = 2800;
+var target = 10; // Set your target percentage here
+function runLoading(){
+  bar.style.width = "0%";
+  pct.textContent = "0%";
+  pct.classList.remove("flash"); // reset flashing
+
+  var start = null;
+
+  requestAnimationFrame(function step(ts){
+    if(!start) start = ts;
+
+    var progress = Math.min((ts - start) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+
+    var value = Math.round(eased * target);
+
+    bar.style.width = value + "%";
+    pct.textContent = value + "%";
+
+    if(progress < 1){
+      requestAnimationFrame(step);
+    } else {
+      // trigger flash ONLY when done
+      pct.classList.add("flash");
+    }
+  });
+}
+
+// Run once
+runLoading();
+
+// Click to refill
+document.querySelector('.bar-outer').addEventListener("click", runLoading);
+</script>
+</body>
+</html>

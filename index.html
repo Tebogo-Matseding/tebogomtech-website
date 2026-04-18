@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tebogo Matseding – IT Portfolio</title>
+<title>Tebogo Matseding - Portfolio Website</title>
 <meta name="description" content="Aspiring Cloud Architect & Network Engineer. IT portfolio of Tebogo Matseding.">
 <link rel="icon" href="images/show1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,11 +128,11 @@ nav ul a:hover,nav ul a.active{color:var(--white);border-color:var(--green-dim)}
 /* CERTIFICATIONS */
 .certifications{background:#000}
 .cert-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;max-width:1000px;margin:0 auto}
-.cert-item{flex:0 0 calc((100% - 44px)/3);max-width:calc((100% - 44px)/3);text-align:center;padding:28px 18px;background:#0a0a0a;border:1px solid var(--green-dim);transition:border-color 0.2s,box-shadow 0.2s}
+.cert-item{flex:0 0 calc((100% - 44px)/3);max-width:calc((100% - 44px)/3);text-align:center;padding:28px 18px;background:#000;border:1px solid var(--green-dim);transition:border-color 0.2s,box-shadow 0.2s}
 .cert-item:hover{border-color:var(--green);box-shadow:0 0 18px rgba(0,205,0,0.1)}
 @media (max-width:900px){.cert-item{flex:0 0 calc((100% - 22px)/2);max-width:calc((100% - 22px)/2)}}
 @media (max-width:650px){.cert-item{flex:0 0 100%;max-width:100%}}
-.cert-item img{height:68px;width:auto;object-fit:contain;margin:0 auto 14px}
+.cert-item img{height:70px;width:100%;object-fit:contain;margin:0 auto 14px}
 .cert-name{font-family:var(--mono);font-size:0.8rem;color:rgba(255,255,255,0.88);margin-bottom:10px;letter-spacing:1px}
 .cert-badge{font-family:var(--pixel);font-size:0.4rem;padding:5px 10px;display:inline-block;letter-spacing:1px}
 .cert-badge.done{background:#003a00;color:var(--green);border:1px solid var(--green-dim)}
@@ -209,14 +209,20 @@ nav ul{display:none}
 
 .win-btn{cursor:pointer!important}
 .hamburger,.restore-btn,.btn-contact,.mobile-menu a,nav ul a,a,button{cursor:pointer!important}
+@media (pointer: coarse) {
+  #cursorSvg { display: none !important; }
+  *, *::before, *::after { cursor: auto !important; }
+  .win-btn, .hamburger, .restore-btn, .btn-contact,
+  .mobile-menu a, nav ul a, a, button { cursor: pointer !important; }
+}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .exit-modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);display:none;align-items:center;justify-content:center;padding:24px;z-index:2000}
 .exit-modal.show{display:flex}
 .exit-dialog{width:min(92vw,460px);background:#050505;border:2px solid var(--green-dim);box-shadow:0 0 28px rgba(0,205,0,0.16);padding:24px}
 .exit-title{font-family:var(--pixel);font-size:0.62rem;line-height:1.8;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
 .exit-text{font-family:var(--mono);font-size:0.95rem;line-height:1.8;color:#d6ffd6;margin-bottom:22px}
-.exit-actions{display:flex;flex-wrap:wrap;gap:12px}
-.exit-action{font-family:var(--pixel);font-size:0.46rem;border:none;padding:12px 18px;letter-spacing:1px;text-transform:uppercase;transition:transform 0.12s,box-shadow 0.12s,background 0.12s;cursor:pointer!important}
+.exit-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.exit-action{font-family:var(--pixel);font-size:0.46rem;border:none;padding:12px 18px;flex:1;max-width:160px;letter-spacing:1px;}
 .exit-action:hover{transform:translateY(-1px)}
 .exit-action:focus-visible,.win-btn:focus-visible,.restore-btn:focus-visible,.hamburger:focus-visible,a:focus-visible{outline:2px solid var(--green-bright);outline-offset:3px}
 .exit-action.continue-btn{background:var(--green);color:var(--black);box-shadow:4px 4px 0 var(--green-dim)}
@@ -311,14 +317,14 @@ body.modal-open{overflow:hidden}
           <span class="t-prompt">tebogomatseding@administrator</span><span class="t-cmd">:~$ <span class="t-blink"></span></span>
         </div>
         <div class="terminal-char-col">
-          <img src="images/Feb24202611_00_51AM.png" alt="Tebogo pixel character" title="tebogomatseding@administrator">
+          <img src="images/newavatar.png" alt="Tebogo pixel character" title="tebogomatseding@administrator">
         </div>
       </div>
     </div>
     <div class="minimized-stage" id="minimizedStage">
       <div class="restore-label">[ terminal minimized ]</div>
       <button class="restore-btn" id="btnRestore">&#9650; Maximize Terminal</button>
-      <img src="images/Feb24202611_00_51AM.png" alt="Tebogo pixel character">
+      <img src="images/newavatar.png" alt="Tebogo pixel character">
     </div>
   </div>
 </section>
@@ -371,7 +377,7 @@ body.modal-open{overflow:hidden}
     <div class="cert-grid">
       
       <div class="cert-item fade-in">
-        <a href="files/CompTIA A+.pdf" target="_blank">
+        <a href="certs/A+.pdf" target="_self">
           <img src="images/aplus-logo.webp" alt="CompTIA A+">
         </a>
         <div class="cert-name">CompTIA A+</div>
@@ -379,7 +385,7 @@ body.modal-open{overflow:hidden}
       </div>
 
       <div class="cert-item fade-in">
-        <a href="files/CmpTIA Network +.pdf" target="_blank">
+        <a href="certs/Network+.pdf" target="_self">
           <img src="images/networkplus-logo.png" alt="CompTIA Network+">
         </a>
         <div class="cert-name">CompTIA Network+</div>
@@ -387,20 +393,26 @@ body.modal-open{overflow:hidden}
       </div>
 
       <div class="cert-item fade-in">
+        <a href="videos/security.html" target="_self">
         <img src="images/ChatGPT Image Mar 25, 2026, 07_21_15 PM - Edited.png" alt="Security+">
+        </a>
         <div class="cert-name">CompTIA Security+</div>
         <span class="cert-badge progress">In Progress</span>
       </div>
 
       <div class="cert-item fade-in">
-        <img src="images/1649839178239.png" alt="Cert">
-        <div class="cert-name">Azure 900</div>
+        <a href="videos/ccna.html" target="_self">
+        <img src="images/ccna.png" alt="Cert">
+        </a>
+        <div class="cert-name">CCNA</div>
         <span class="cert-badge progress">In Progress</span>
       </div>
 
       <div class="cert-item fade-in">
-        <img src="images/image.png" alt="Cert">
-        <div class="cert-name">AWS Cloud Practitioner</div>
+        <a href="videos/azure104.html" target="_self">
+        <img src="images/Azure104.png" alt="Cert">
+        </a>
+        <div class="cert-name">Azure 104</div>
         <span class="cert-badge progress">In Progress</span>
       </div>
 
@@ -434,7 +446,7 @@ body.modal-open{overflow:hidden}
           <a class="btn-contact" href="projects/Beginners Guide to AWS Pricing Calculator.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
         </div>
         <div class="project-item fade-in">
-          <img src="images/Hyper-V_logo.png" alt="Configuring a Private Virtual Network in Hyper-V">
+          <img src="images/Windows_logo_-_2012.svg.png" alt="Configuring a Private Virtual Network in Hyper-V">
           <div class="cert-name">Configuring a Private Virtual Network in Hyper-V</div>
           <p class="project-desc">Created an isolated private network between two Hyper-V VMs, enabling inter-VM communication without host access.</p>
           <a class="btn-contact" href="projects/Configuring a Private Virtual Network in Hyper-V.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
@@ -467,7 +479,7 @@ body.modal-open{overflow:hidden}
           <img src="images/Microsoft_Azure.svg.png" alt="Storage Configuration Project">
           <div class="cert-name">Storage Configuration Project</div>
           <p class="project-desc">Configured Azure Blob Storage for an organisation, creating resource groups, storage accounts, and access controls.</p>
-          <a class="btn-contact" href="projects/Storage Configuration Project.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+          <a class="btn-contact" href="projects/Storage Configuration.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
         </div>
         <div class="project-item fade-in">
           <img src="images/comptia-network-0_1_orig.png" alt="Virtual Network Configuration With Subnetting">
@@ -482,7 +494,7 @@ body.modal-open{overflow:hidden}
           <a class="btn-contact" href="projects/Virtual Office Infrastructure with Remote Server and Printer Management.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
         </div>
         <div class="project-item fade-in">
-          <img src="images/Hyper-V_logo.png" alt="Virtual Machine Deployment Using Hyper-V">
+          <img src="images/Windows_logo_-_2012.svg.png" alt="Virtual Machine Deployment Using Hyper-V">
           <div class="cert-name">Virtual Machine Deployment Using Hyper-V</div>
           <p class="project-desc">Set up Windows 10 and Windows Server 2016 VMs in Hyper-V, configuring resources, networking, and snapshots.</p>
           <a class="btn-contact" href="projects/Virtual Machine Deployment Using Hyper-V.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
@@ -504,6 +516,12 @@ body.modal-open{overflow:hidden}
           <div class="cert-name">Vulnerability Assessment: Eduvos Web App</div>
           <p class="project-desc">Conducted a simulated web app vulnerability assessment using Nmap, Burp Suite, OWASP ZAP, and OpenVAS with POPIA compliance focus.</p>
           <a class="btn-contact" href="projects/Vulnerability Assessment For Eduvos Web App.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
+        </div>
+        <div class="project-item fade-in">
+          <img src="images/Tux.svg.png" alt="Troubleshooting Internet Connectivity in Linux">
+          <div class="cert-name">Troubleshooting Internet Connectivity in Linux</div>
+          <p class="project-desc">This blog post breaks down how IP addresses work in a network using simple, real-world analogies to make the concept easier to understand.</p>
+          <a class="btn-contact" href="projects/Troubleshooting Internet Connectivity in Linux.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
         </div>
         <!-- Personal Projects -->
         <div class="project-item fade-in">
@@ -567,7 +585,7 @@ body.modal-open{overflow:hidden}
           <a class="btn-contact" href="projects/Secure VM with Azurite Blob Storage Backup.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
         </div>
         <div class="project-item fade-in">
-          <img src="images/CVSS_4.0-complete-signature-RGB.svg.png" alt="SOP Vulnerability Assessment">
+          <img src="images/SOP.png" alt="SOP Vulnerability Assessment">
           <div class="cert-name">SOP: Vulnerability Assessment</div>
           <p class="project-desc">Created a structured SOP covering the full vulnerability assessment lifecycle — identification, analysis, and remediation.</p>
           <a class="btn-contact" href="projects/Standard Operating Procedure (SOP)Vulnerability Assessment.html" style="display:inline-block;margin-top:10px">View Project &#8594;</a>
@@ -654,11 +672,11 @@ body.modal-open{overflow:hidden}
 
 <div class="exit-modal" id="exitModal" aria-hidden="true">
   <div class="exit-dialog" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" aria-describedby="exitModalText">
-    <h2 class="exit-title" id="exitModalTitle">Exit Website?</h2>
-    <p class="exit-text" id="exitModalText">Are you sure you want to exit the website, or would you like to continue browsing?</p>
+    <h2 class="exit-title" id="exitModalTitle">Terminate Session?</h2>
+    <p class="exit-text" id="exitModalText">Are you sure you want to exit, or continue browsing?</p>
     <div class="exit-actions">
-      <button class="exit-action continue-btn" id="continueSiteBtn" type="button">Continue Website</button>
-      <button class="exit-action exit-btn" id="confirmExitBtn" type="button">Exit Website</button>
+      <button class="exit-action continue-btn" id="continueSiteBtn" type="button">Continue</button>
+      <button class="exit-action exit-btn" id="confirmExitBtn" type="button">Exit Terminal</button>
     </div>
   </div>
 </div>
@@ -670,6 +688,10 @@ body.modal-open{overflow:hidden}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var cur = document.getElementById('cursorSvg');
+window.addEventListener('touchstart', function() {
+  if (cur) cur.style.display = 'none';
+  document.documentElement.style.setProperty('cursor', 'auto', 'important');
+}, { once: true, passive: true });
 document.addEventListener('mousemove', function(e) {
   if (cur) {
     cur.style.left = e.clientX + 'px';
